@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+    <link rel="shortcut icon" href="#" />
+    <link
+      rel="icon"
+      href="https://lh3.googleusercontent.com/a-/AFdZucqw-YPogCZSZha5T_rsXJwCz6mRmxfYsjeOZKk9=s96-c-rg-br100"
+    />
+    <title>Fa Chattbot</title>
+  </head>
+  <body>
+    <div class="loader loader--active">
+      <div class="loader__tile"></div>
+      <div class="loader__tile"></div>
+      <div class="loader__tile"></div>
+      <div class="loader__tile"></div>
+      <div class="loader__tile"></div>
+    </div>
+    <div id="main">
+      <div class="header" id="myHeader">
+        <div id="avatar">
+          <label for="input-img" class="avata">
+            <img
+              class="avata-user"
+              src="https://pbs.twimg.com/media/FKvNr9iVcAEbrm9.jpg"
+              alt=""
+          /></label>
+          <input
+            type="file"
+            hidden
+            name=""
+            id="input-img"
+            accept="image/png, image/gif, image/jpeg"
+          />
+        </div>
+        <div id="status-message">
+          <h2 class="name-user">User Name</h2>
+          <h3 class="status-user">
+            <em class="fa-solid fa-circle"></em>Online
+          </h3>
+        </div>
+      </div>
+
+      <div id="container">
+        <div id="chat-area">
+          <div id="chatbox">
+            <div class="botText">
+              <span>Have you eaten yet?</span>
+              <div class="message-option">
+                <span class="delete" onclick="Delete(this)"
+                  ><i class="fa-solid fa-xmark"></i
+                ></span>
+                <span class="like"><i class="fa-solid fa-heart"></i></span>
+              </div>
+            </div>
+            <div class="userText">
+              <span>:V</span>
+              <div class="message-option">
+                <span class="delete" onclick="Delete(this)"
+                  ><i class="fa-solid fa-xmark"></i
+                ></span>
+                <span class="like"><i class="fa-solid fa-heart"></i></span>
+              </div>
+            </div>
+          </div>
+          <div id="userInput">
+            <div id="icons" class="icon1 icon" onclick="Popup()">
+              <em class="fa-solid fa-file-arrow-up tooltip"
+                ><span class="tooltiptext">File</span></em
+              >
+
+              <input type="file" hidden name="" id="input-file" />
+            </div>
+            <div id="picture" class="icon1 icon">
+              <label for="input-image">
+                <em class="fa-solid fa-images tooltip"
+                  ><span class="tooltiptext">Image</span>
+                </em></label
+              >
+              <input
+                type="file"
+                hidden
+                name=""
+                id="input-image"
+                accept="image/png, image/gif, image/jpeg"
+              />
+            </div>
+            <input id="textInput" type="text" name="msg" placeholder="Aa~~" />
+            <div id="voice" class="icon1 icon" onclick="Wrapper()">
+              <em class="fa-solid fa-microphone tooltip"
+                ><span class="tooltiptext get-voice">Voice</span></em
+              >
+            </div>
+
+            <div id="video" class="icon1 icon" onclick="Popup()">
+              <em class="fa-solid fa-camera tooltip"
+                ><span class="tooltiptext">Camera</span></em
+              >
+            </div>
+          </div>
+        </div>
+
+        <div id="settings">
+          <div id="settings-menu-btn">
+            <div id="icon-hover">
+              <em class="icon-menu fa-solid fa-gear"></em>
+            </div>
+          </div>
+
+          <div id="settings-menu">
+            <div id="func">
+              <div id="call" onclick="Popup()">
+                <!-- <a href="https://www.wikihow.com/Have-a-Phone-Call-With-Your-Crush"> -->
+                <a>
+                  <em class="fa-solid fa-phone"></em
+                ></a>
+              </div>
+              <div id="video-call">
+                 <a href="{{ url_for('videocall') }}" target="_blank">
+                  <em class="fa-solid fa-video"></em
+                ></a>
+              </div>
+            </div>
+
+            <div id="func1">
+              <div id="nickname" class="func1">
+                <em class="fa-solid fa-pencil">
+                  <span> Change Nickname</span></em
+                >
+              </div>
+              <div id="changebg" class="func1">
+                <em class="fa-solid fa-brush"
+                  ><span> Change Background</span></em
+                >
+              </div>
+              <div id="clear" class="func1">
+                <em class="fa-solid fa-trash-can-arrow-up"
+                  ><span> Clear Chat</span></em
+                >
+              </div>
+              <div class="voice-option">
+                <span>Responsive Voice</span>
+                <form action="">
+                  <input type="radio" name="rdo" id="yes" checked />
+                  <input type="radio" name="rdo" id="no" />
+                  <div class="switch">
+                    <label for="yes">Yes</label>
+                    <label for="no">No</label>
+                    <span></span>
+                  </div>
+                </form>
+              </div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="popup">
+      <button id="closePopup">X</button>
+      <br />
+      <button id="goPremium">
+        <a href="{{ url_for('premium') }}"
+          ><em class="fa-solid fa-gem"><span> GO PREMIUM</span></em></a
+        >
+      </button>
+    </div>
+
+    <div class="wrapper">
+      <button class="close-btn">X</button>
+      <div class="voice-btn">
+        <input type="radio" name="select" id="option-1" checked />
+        <input type="radio" name="select" id="option-2" />
+        <label for="option-1" class="option option-1">
+          <span>Start</span>
+        </label>
+        <label for="option-2" class="option option-2">
+          <span>Stop</span>
+        </label>
+      </div>
+      <div class="box">
+        <div class="container">
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+          <span class="circle"></span>
+        </div>
+      </div>
+      <div class="output" cols="30" rows="10"></div>
+      <button class="sub-voice">Send</button>
+    </div>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=Rq0t21X5"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/5e37aebda1.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/js/script.js" defer></script>
+  </body>
+</html>
